@@ -13,8 +13,8 @@ def list_tasks():
     for task in tasks:
         i+=1
         if (task['completed'] == True): 
-            print(f"{i}. {task['name']} - Hoàn thành")
-        else: print(f"{i}. {task['name']} - Chưa hoàn thành")
+            print(f"[X] {i}. {task['name']}")
+        else: print(f"[ ] {i}. {task['name']}")
 # Kiểm tra xem công việc hoàn thành chưa
 def complete_task():
     print("\nTrạng thái:")
@@ -25,7 +25,14 @@ def complete_task():
             break
     if (check == True): print("Đã hoàn thành công việc!")
     else: print("Chưa hoàn thành công việc!")
-    
+# Xoá công việc theo chỉ số
+def delete_task(index):
+    print()
+    if (index<1 or index>len(tasks)): 
+        input("Chỉ số không hợp lệ!")
+    else:
+        task = tasks.pop(index-1)
+        print(f"Đã xóa công việc {task['name']}")
 # --- Điểm bắt đầu của chương trình ---
 if __name__ == "__main__":
     print("Chào mừng đến với ứng dụng To-Do List!\n")
@@ -33,3 +40,5 @@ add_task("Học bài Git và GitHub")
 add_task("Làm bài tập thực hành ở nhà")
 list_tasks()
 complete_task()
+delete_task(1)
+list_tasks()
